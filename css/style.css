@@ -560,3 +560,20 @@
   border-radius: 10px;
 }
 /* ========================== */
+
+/* ========================== */
+/* Styling untuk Music Player */
+#background_music {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 250px; /* Atur lebar sesuai selera */
+  z-index: 9999; /* Memastikan player selalu di atas */
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+#background_music:hover {
+  opacity: 1;
+}
+/* ========================== */
