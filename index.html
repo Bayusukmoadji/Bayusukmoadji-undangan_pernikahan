@@ -891,6 +891,16 @@
                 action="https://formsubmit.co/sukmaadjibayu@gmail.com"
                 method="POST"
               >
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://undangan-pernikahan-hazel.vercel.app//terima-kasih.html"
+                />
+
+                <input type="text" name="_honey" style="display: none" />
+
+                <input type="hidden" name="_captcha" value="false" />
+
                 <div class="row gx-4 gy-3 mt-5 pt-3">
                   <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="form-group">
@@ -901,9 +911,10 @@
                         type="text"
                         class="form-control py-3 border-0"
                         id="nickname"
-                        name="nickname"
+                        name="Nama Panggilan"
                         placeholder="Nama Panggilan"
                         style="color: #000"
+                        required
                       />
                     </div>
                   </div>
@@ -916,7 +927,7 @@
                         type="text"
                         class="form-control py-3 border-0"
                         id="fullname"
-                        name="fullname"
+                        name="Nama Asli"
                         placeholder="Nama Panjang Anda"
                         style="color: #000"
                       />
@@ -931,7 +942,7 @@
                         type="email"
                         class="form-control py-3 border-0"
                         id="email"
-                        name="email"
+                        name="Email"
                         placeholder="Enter Your Email"
                         style="color: #000"
                       />
@@ -946,7 +957,7 @@
                         type="text"
                         class="form-control py-3 border-0"
                         id="phone"
-                        name="phone"
+                        name="Phone"
                         placeholder="Enter Your Phone"
                         style="color: #000"
                       />
@@ -960,7 +971,7 @@
                       <select
                         class="form-control bg-white text-dark py-3 border-0"
                         id="guestCount"
-                        name="guestCount"
+                        name="Jumlah Tamu"
                         style="color: #000"
                       >
                         <option>Hanya Saya</option>
@@ -976,7 +987,7 @@
                         >Pesan Atau Ucapan</label
                       >
                       <textarea
-                        name="message"
+                        name="Pesan"
                         class="form-control border-0"
                         id="message"
                         cols="30"
@@ -1011,9 +1022,10 @@
                                 <input
                                   class="form-check-input me-2"
                                   type="radio"
-                                  name="kehadiran"
+                                  name="Kehadiran"
                                   id="hadir"
-                                  value="Ya Hadir"
+                                  value="Ya, akan hadir"
+                                  required
                                 />
                                 <label
                                   class="form-check-label text-dark"
@@ -1029,9 +1041,9 @@
                                 <input
                                   class="form-check-input me-2"
                                   type="radio"
-                                  name="kehadiran"
+                                  name="Kehadiran"
                                   id="tidakHadir"
-                                  value="Maaf Tidak Hadir"
+                                  value="Maaf, berhalangan"
                                 />
                                 <label
                                   class="form-check-label text-dark"
@@ -1050,6 +1062,7 @@
                     data-wow-delay="0.1s"
                   >
                     <button
+                      type="submit"
                       class="btn btn-primary btn-primary-outline-0 py-3 px-5"
                     >
                       Kirim
