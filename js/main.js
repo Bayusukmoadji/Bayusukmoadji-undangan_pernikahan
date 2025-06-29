@@ -56,60 +56,38 @@
     return false;
   });
 
-  // SOLUSI HYBRID (KLIK + SCROLL) - Metode Paling Andal
+  // Kode untuk Splash Screen dan Autoplay Musik
   window.addEventListener("load", function () {
+    const splashScreen = document.getElementById("splashScreen");
     const music = document.getElementById("background_music");
-    let hasInteracted = false; // Penanda apakah pengguna sudah berinteraksi
 
-    if (!music) {
-      console.error("Elemen musik tidak ditemukan!");
+    if (!splashScreen) {
+      console.log(
+        "Splash screen tidak ditemukan, musik mungkin tidak akan autoplay."
+      );
       return;
     }
 
-    // --- BAGIAN 1: MEMBUKA KUNCI AUDIO DENGAN INTERAKSI PERTAMA ---
-    // Fungsi ini hanya berjalan SEKALI untuk membuka izin audio
-    function unlockAudio() {
-      if (!hasInteracted) {
-        console.log(
-          "Interaksi pertama (klik/sentuh) terdeteksi. Izin audio dibuka."
-        );
-        // Trik: putar dan langsung jeda untuk "mendaftarkan" interaksi
-        music
-          .play()
-          .then(() => {
-            music.pause();
-            music.currentTime = 0; // Kembali ke awal lagu
-          })
-          .catch((e) => console.log("Gagal membuka izin audio."));
+    // Fungsi yang akan dijalankan saat layar diketuk
+    function openInvitation() {
+      // 1. Ubah opacity menjadi 0 untuk memulai efek fade-out
+      splashScreen.style.opacity = "0";
 
-        hasInteracted = true;
-        // Hapus listener ini setelah berhasil
-        document.body.removeEventListener("click", unlockAudio);
-        document.body.removeEventListener("touchstart", unlockAudio);
-      }
+      // 2. Putar musiknya
+      music.play().catch((error) => {
+        console.error("Gagal memutar musik:", error);
+      });
+
+      // 3. Setelah transisi selesai (800ms), sembunyikan elemen splash screen
+      //    agar tidak menghalangi konten di bawahnya.
+      setTimeout(() => {
+        splashScreen.style.display = "none";
+      }, 800); // Angka ini (800ms) harus sama dengan durasi transisi di CSS
     }
 
-    document.body.addEventListener("click", unlockAudio);
-    document.body.addEventListener("touchstart", unlockAudio);
-
-    // --- BAGIAN 2: MEMUTAR MUSIK SAAT PENGGUNA SCROLL ---
-    // Fungsi ini akan memutar musik jika izin sudah dibuka DAN pengguna sudah scroll
-    function playMusicOnScroll() {
-      // Cek 2 kondisi: sudah ada interaksi DAN sudah scroll melewati batas
-      if (hasInteracted && window.scrollY > 50) {
-        if (music.paused) {
-          console.log(
-            "Scroll terdeteksi setelah interaksi. Memutar musik sekarang."
-          );
-          music.play();
-          // Hapus listener scroll agar tidak berjalan terus-menerus
-          window.removeEventListener("scroll", playMusicOnScroll);
-        }
-      }
-    }
-
-    window.addEventListener("scroll", playMusicOnScroll);
-
-    console.log("Sistem musik Hybrid siap. Menunggu interaksi dan scroll.");
+    // Menambahkan event listener ke splash screen
+    // Opsi { once: true } memastikan listener ini hanya berjalan sekali
+    splashScreen.addEventListener("click", openInvitation, { once: true });
+    splashScreen.addEventListener("touchstart", openInvitation, { once: true });
   });
 })(jQuery);

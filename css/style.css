@@ -563,17 +563,75 @@
 
 /* ========================== */
 /* Styling untuk Music Player */
-#background_music {
+/* ===================================
+   Styling untuk Splash Screen
+====================================== */
+
+#splashScreen {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 250px; /* Atur lebar sesuai selera */
-  z-index: 9999; /* Memastikan player selalu di atas */
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Ganti warna latar belakang sesuai tema pernikahan Anda */
+  background-color: #f8f9fa;
+  /* Atau gunakan gambar latar: 
+     background-image: url('../img/nama-gambar-latar.jpg');
+     background-size: cover;
+     background-position: center;
+  */
+
+  z-index: 10000; /* Pastikan berada di paling atas */
+  cursor: pointer; /* Mengubah kursor menjadi tangan untuk menandakan bisa diklik */
+
+  /* Transisi untuk efek fade-out yang halus */
+  transition: opacity 0.8s ease-out;
+
+  /* Menggunakan Flexbox untuk menengahkan konten */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-#background_music:hover {
-  opacity: 1;
+/* Styling untuk konten di dalam splash screen */
+#splashScreen .content {
+  color: #333; /* Warna teks */
+}
+
+#splashScreen .content h1 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+#splashScreen .content h2 {
+  font-family: "Great Vibes", cursive; /* Contoh font romantis, jika Anda punya */
+  font-size: 4rem;
+  margin: 10px 0;
+}
+
+#splashScreen .content p {
+  font-size: 1rem;
+  margin-top: 20px;
+  opacity: 0.8;
+  animation: bounce 2s infinite; /* Animasi kecil agar lebih hidup */
+}
+
+/* Animasi sederhana untuk teks "Ketuk layar" */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 /* ========================== */
